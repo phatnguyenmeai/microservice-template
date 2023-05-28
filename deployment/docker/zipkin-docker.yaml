@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  storage:
+    image: openzipkin/zipkin-mysql
+    container_name: mysql-zipkin
+    restart: unless-stopped
+    networks:
+      - zipkin-network
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin:latest
+    depends_on:
+      - storage
+    restart: unless-stopped
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql-zipkin
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - zipkin-network
+  dependencies:
+    image: openzipkin/zipkin-dependencies
+    container_name: dependencies
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql-zipkin
+      # Add the baked-in username and password for the zipkin-mysql image
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+      # Uncomment to see dependency processing logs
+      # - ZIPKIN_LOG_LEVEL=DEBUG
+      # Uncomment to adjust memory used by the dependencies job
+      # - JAVA_OPTS=-verbose:gc -Xms1G -Xmx1G
+    depends_on:
+      - storage
+    networks:
+      - zipkin-network
+networks:
+  zipkin-network:
+    name: zipkin-network
+    driver: bridge

@@ -1,0 +1,15 @@
+spring:
+  zipkin:
+    baseUrl: http://localhost:9411/
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: "classpath:/shared, classpath:/shared/{application},classpath:/shared/sql/"
+        default-label: ''
+  profiles:
+    active: native,dev
+  application:
+    name: config-server
+server:
+  port: 8888

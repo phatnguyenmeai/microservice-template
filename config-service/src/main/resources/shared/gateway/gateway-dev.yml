@@ -1,0 +1,45 @@
+client:
+  whitelist:
+    - http://localhost:3000
+spring:
+  application:
+    name: gateway
+    profiles:
+      - dev
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - http://localhost:3000
+            allowedHeaders:
+              - Origin
+              - X-Requested-With
+              - Content-Type
+              - Accept
+              - Authorization
+              - X-Forwarded-For
+            allowedMethods:
+              - HEAD
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowCredentials: true
+      discovery:
+        locator:
+      filter:
+        hystrix:
+          enabled: true
+
+server:
+  port: 8765
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
