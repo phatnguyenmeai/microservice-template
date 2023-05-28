@@ -82,6 +82,11 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb</artifactId>
+                <version>3.0.5</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

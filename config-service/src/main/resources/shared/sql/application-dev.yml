@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:IV3SOr2ktKo49y2QNMbuvri8jcwqunUlWI4Lj9SFgw4sYrZvydWxpdixTrWw@3lichat.com:27017/chat3li_mongo_db?authSource=admin
