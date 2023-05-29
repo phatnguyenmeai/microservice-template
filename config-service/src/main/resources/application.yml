@@ -13,3 +13,5 @@ spring:
     name: config-server
 server:
   port: 8888
+logstash:
+  host: localhost

@@ -15,7 +15,7 @@
         <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
     <root level="INFO">
-        <appender-ref ref="logstash"/>
+<!--        <appender-ref ref="logstash"/>-->
         <appender-ref ref="CONSOLE"/>
     </root>
 
