@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   mongodb-container:
-    container_name: mongo-dev
+    container_name: mongo-test
     image: mongo:latest
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
@@ -11,8 +11,8 @@ services:
     ports:
       - "27019:27017"
     volumes:
-      - mongodb-data:/data/db
+      - mongodb-data-test:/data/db
     restart: always
 volumes:
-    mongodb-data:
-        driver: local
+  mongodb-data-test:
+    driver: local
