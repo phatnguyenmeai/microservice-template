@@ -1,0 +1,18 @@
+spring:
+  config:
+    name: order-service
+  application:
+    name: order-service
+    profiles:
+      - dev
+server:
+  port: 4999
+  servlet:
+    context-path: /order-api
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

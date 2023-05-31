@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,6 @@ public class UserDto {
     private Date updatedAt;
     @JsonProperty("user_is_delete")
     private boolean isDelete;
+    @JsonProperty("user_orders")
+    private List<OrderDto> orders;
 }

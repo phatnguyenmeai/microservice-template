@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {OrdersMapper.class})
 public interface UserMapper extends DefaultMapper<UserEntity, UserDto> {
-    @Mapping(source = "id", target = "orders", qualifiedByName = "findByUser")
+    @Mapping(source = "id", target = "orders")
     UserDto toDto(UserEntity entity);
 }

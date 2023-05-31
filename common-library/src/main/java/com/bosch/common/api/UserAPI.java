@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "user-service", path = "/users")
+@FeignClient(name = "user-service", path = "/user-api/users")
 public interface UserAPI {
-    @GetMapping("")
+    @GetMapping("/")
     ResponseEntity<Page<UserDto>> findAll(@RequestParam(defaultValue = "0") int page,
                                           @RequestParam(defaultValue = "10") int size,
                                           @RequestParam(defaultValue = "createdAt") String sortBy,

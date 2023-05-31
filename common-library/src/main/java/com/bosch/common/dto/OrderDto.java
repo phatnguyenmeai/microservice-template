@@ -28,5 +28,4 @@ public class OrderDto {
     private Date updatedAt;
     @JsonProperty("order_is_delete")
     private boolean isDelete;
-    private List<OrderDto> orders;
 }

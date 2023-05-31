@@ -6,6 +6,7 @@ import com.bosch.order.mapper.OrderMapper;
 import com.bosch.order.repository.OrderRepository;
 import com.bosch.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
@@ -69,6 +71,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> findByUser(String userId) {
+        log.info("Finding orders for user {}", userId);
         List<OrderEntity> orderEntities = orderRepository.findByUserId(userId);
         return orderEntities.stream().map(orderMapper::toDto).collect(Collectors.toList());
     }

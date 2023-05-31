@@ -1,0 +1,11 @@
+spring:
+  config:
+    name: order-service
+  application:
+    name: order-service
+    profiles:
+      - prod
+server:
+  port: 4999
+  servlet:
+    context-path: /order-api

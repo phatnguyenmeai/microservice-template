@@ -4,6 +4,7 @@ import com.bosch.common.api.OrderAPI;
 import com.bosch.common.dto.OrderDto;
 import com.bosch.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 @RequiredArgsConstructor
+@RequestMapping("/orders")
+@Slf4j
 public class OrderController implements OrderAPI {
     private final OrderService orderService;
 
     @Override
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<Page<OrderDto>> findAll(@RequestParam(defaultValue = "0") int page,
                                                   @RequestParam(defaultValue = "10") int size,
                                                   @RequestParam(defaultValue = "createdAt") String sortBy,
@@ -56,7 +58,9 @@ public class OrderController implements OrderAPI {
     }
 
     @Override
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<OrderDto>> findByUserId(String userId) throws Exception {
+        log.info("findByUserId: userId={}", userId);
         return ResponseEntity.ok(orderService.findByUser(userId));
     }
 }
